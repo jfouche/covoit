@@ -1,0 +1,16 @@
+{
+    "compileOnSave": true,
+
+    "compilerOptions": {
+        "module": "commonjs",
+        "noImplicitAny": true,
+        "target": "es5",
+        "removeComments": false,
+        "preserveConstEnums": true,
+        "outDir": "./www/js",
+        "jsx": "react"
+    },
+    "include": [
+        "app/**/*"
+    ]
+}

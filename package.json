@@ -9,9 +9,18 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/react": "^16.0.2",
+    "@types/react-dom": "^15.5.3",
     "bootstrap": "^3.3.7",
     "firebase": "^4.2.0",
     "jquery": "^1.12.4",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
     "webcomponents-lite": "^0.6.0"
+  },
+  "devDependencies": {
+    "awesome-typescript-loader": "^3.2.3",
+    "source-map-loader": "^0.2.1",
+    "typescript": "^2.4.2"
   }
 }
