@@ -18,6 +18,7 @@
 
 <body>
 
+    <!--
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -36,13 +37,18 @@
                     <li><a href="#page-calendar" id="btn-calendar">Calendar</a></li>
                 </ul>
             </div>
-            <!--/.nav-collapse -->
+
         </div>
     </nav>
 
     <div class="container">
 
         <div class="container" id="page-users">
+            <form>
+                <label for="new-user">User name</label>
+                <input id="new-user" type="text" />
+                <a class="btn btn-default" id="add-user" href="#" role="button">add</a>
+            </form>
             <div class="list-group">
                 <a href="#" class="list-group-item">
                     <p class="list-group-item-text">Jérémie
@@ -50,7 +56,7 @@
                             <button type="button" class="btn btn-default">Left</button>
                             <button type="button" class="btn btn-default">Middle</button>
                             <button type="button" class="btn btn-default">Right</button>
-                            </span>
+                        </div>
                     </p>
 
                 </a>
@@ -63,18 +69,24 @@
                 <a href="#" class="list-group-item">
                     <p class="list-group-item-text">Jérémie</p>
                 </a>
-                </div>
             </div>
         </div>
+    </div>
 
-        <div class="container" id="page-calendar">oez oznc ozecn ozein
-        </div>
+    <div class="container" id="page-calendar">oez oznc ozecn ozein
+    </div>
 
-        <div id="example"></div>
+    <div id="example"></div>
+-->
+    <div id="app-menu"></div>
 
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/app.js"></script>
+    <div id="app-trajet">TRAJET</div>
+    <div id="app-history">HISTORY</div>
+    <div id="app-users">USERS</div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/app.js"></script>
 </body>
 
 </html>

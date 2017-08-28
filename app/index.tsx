@@ -1,9 +1,10 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import { Hello } from "./components/Hello";
+import { AppMenu } from "./components/app-menu";
+
 
 ReactDOM.render(
-    <Hello compiler="TypeScript" framework="React" />,
-    document.getElementById("example")
+    <AppMenu />,
+    document.getElementById("app-menu")
 );
