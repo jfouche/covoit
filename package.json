@@ -1,26 +1,26 @@
 {
   "name": "covoit",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC",
+  "license": "WTFPL",
   "dependencies": {
-    "@types/react": "^16.0.2",
-    "@types/react-dom": "^15.5.3",
     "bootstrap": "^3.3.7",
     "firebase": "^4.2.0",
-    "jquery": "^1.12.4",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
     "webcomponents-lite": "^0.6.0"
   },
   "devDependencies": {
     "awesome-typescript-loader": "^3.2.3",
+    "css-loader": "^0.28.7",
+    "file-loader": "^0.11.2",
+    "html-loader": "^0.5.1",
     "source-map-loader": "^0.2.1",
-    "typescript": "^2.4.2"
+    "style-loader": "^0.18.2",
+    "typescript": "^2.4.2",
+    "uglifyjs-webpack-plugin": "^0.4.6"
   }
 }
