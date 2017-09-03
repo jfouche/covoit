@@ -1,12 +1,13 @@
-body {
-    padding-top: 50px;
+body {}
+
+#page-trajets {
+    display: block;
 }
 
-.starter-template {
-    padding: 40px 15px;
-    text-align: center;
+#page-history {
+    display: none;
 }
 
-#page-calendar {
-    visibility: hidden
+#page-users {
+    display: none;
 }

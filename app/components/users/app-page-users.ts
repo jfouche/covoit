@@ -1,16 +1,19 @@
 /// <reference path="../../typings/webcomponents.d.ts" />
 
+import { registerAppFormUserElement } from "./app-form-user"
+
 declare function require(filename: string): string;
 
 let html = require("./app-page-users.html");
 
-class AppUsersPageElement extends HTMLDivElement {
+class AppPageUsersElement extends HTMLDivElement {
 
     createdCallback() {
         this.innerHTML = html;
     }
 }
 
-export function registerAppUsersPageElement() {
-    document.registerElement("app-user-page", AppUsersPageElement);
+export function registerAppPageUsersElement() {
+    registerAppFormUserElement();
+    document.registerElement("app-users-page", AppPageUsersElement);
 }

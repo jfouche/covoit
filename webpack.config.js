@@ -22,7 +22,7 @@ module.exports = {
             },
             // allows : require("file.html")
             {
-                test: /component.*\.html/,
+                test: /\.html/,
                 loader: "html-loader"
             },
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
