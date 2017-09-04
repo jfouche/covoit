@@ -1,6 +1,7 @@
 /// <reference path="../../typings/webcomponents.d.ts" />
 
-import { registerAppFormUserElement } from "./app-form-user"
+import { registerAppFormUserElement } from "./app-user-form"
+import { registerAppListUserElement } from "./app-user-list"
 
 declare function require(filename: string): string;
 

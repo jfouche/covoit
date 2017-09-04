@@ -300,7 +300,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var app_form_user_1 = __webpack_require__(9);
+var app_user_form_1 = __webpack_require__(9);
 var html = __webpack_require__(11);
 var AppPageUsersElement = (function (_super) {
     __extends(AppPageUsersElement, _super);
@@ -313,7 +313,7 @@ var AppPageUsersElement = (function (_super) {
     return AppPageUsersElement;
 }(HTMLDivElement));
 function registerAppPageUsersElement() {
-    app_form_user_1.registerAppFormUserElement();
+    app_user_form_1.registerAppFormUserElement();
     document.registerElement("app-users-page", AppPageUsersElement);
 }
 exports.registerAppPageUsersElement = registerAppPageUsersElement;
@@ -376,7 +376,7 @@ module.exports = "<form>\r\n    <label for=\"user-name\">Name</label>\r\n    <in
 /* 11 */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\r\n    <h1>Users</h1>\r\n    <app-user-form></app-user-form>\r\n</div>";
+module.exports = "<div>\r\n    <h1>Users</h1>\r\n    <app-user-form></app-user-form>\r\n    <app-user-list></app-user-list>\r\n</div>";
 
 /***/ }),
 /* 12 */

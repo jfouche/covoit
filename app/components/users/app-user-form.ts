@@ -2,7 +2,7 @@
 
 declare function require(filename: string): string;
 
-let html = require("./app-form-user.html");
+let html = require("./app-user-form.html");
 
 class AppFormUser extends HTMLDivElement {
 
