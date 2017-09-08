@@ -9,6 +9,11 @@ class AppUserListElement extends HTMLDivElement {
     createdCallback() {
         this.innerHTML = html;
     }
+
+    attachedCallback(): void {
+        let name = this.getAttribute("name");
+        this.getElementsByClassName("user-name")[0].innerHTML = name;        
+    }
 }
 
 export function registerAppUserListElement() {

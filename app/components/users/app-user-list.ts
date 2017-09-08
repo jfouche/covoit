@@ -21,6 +21,7 @@ class AppListUser extends HTMLDivElement {
 
     private addUser(user: User) {
         let userElem = document.createElement("app-user-list-element");
+        userElem.setAttribute("name", user.name);
         this.children[0].appendChild(userElem);
     }
 }

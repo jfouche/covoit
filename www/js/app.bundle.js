@@ -469,6 +469,7 @@ var AppListUser = (function (_super) {
     };
     AppListUser.prototype.addUser = function (user) {
         var userElem = document.createElement("app-user-list-element");
+        userElem.setAttribute("name", user.name);
         this.children[0].appendChild(userElem);
     };
     return AppListUser;
@@ -506,6 +507,10 @@ var AppUserListElement = (function (_super) {
     }
     AppUserListElement.prototype.createdCallback = function () {
         this.innerHTML = html;
+    };
+    AppUserListElement.prototype.attachedCallback = function () {
+        var name = this.getAttribute("name");
+        this.getElementsByClassName("user-name")[0].innerHTML = name;
     };
     return AppUserListElement;
 }(HTMLDivElement));
