@@ -16,5 +16,6 @@ class AppPageUsersElement extends HTMLDivElement {
 
 export function registerAppPageUsersElement() {
     registerAppFormUserElement();
+    registerAppListUserElement();
     document.registerElement("app-users-page", AppPageUsersElement);
 }

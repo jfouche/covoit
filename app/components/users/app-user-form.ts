@@ -1,5 +1,7 @@
 /// <reference path="../../typings/webcomponents.d.ts" />
 
+import { theAppController } from "../../app-controller"
+
 declare function require(filename: string): string;
 
 let html = require("./app-user-form.html");
@@ -25,6 +27,7 @@ class AppFormUser extends HTMLDivElement {
     private onAddUser() {
         let userName = this.userInput.value;
         this.userInput.value = "";
+        theAppController.addUser(userName);
     }
 }
 

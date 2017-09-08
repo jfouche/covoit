@@ -60,11 +60,77 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var evt = __webpack_require__(3);
+var User = (function () {
+    function User(name) {
+        this.name = name;
+    }
+    return User;
+}());
+exports.User = User;
+var AppController = (function () {
+    function AppController() {
+        this.onUser = new evt.LiteEvent();
+        this.model = new AppModel();
+    }
+    AppController.prototype.showPage = function (page) {
+        switch (page) {
+            case "trajets":
+                document.getElementById("page-trajets").style.display = "block";
+                document.getElementById("page-history").style.display = "none";
+                document.getElementById("page-users").style.display = "none";
+                break;
+            case "history":
+                document.getElementById("page-trajets").style.display = "none";
+                document.getElementById("page-history").style.display = "block";
+                document.getElementById("page-users").style.display = "none";
+                break;
+            case "users":
+                document.getElementById("page-trajets").style.display = "none";
+                document.getElementById("page-history").style.display = "none";
+                document.getElementById("page-users").style.display = "block";
+                break;
+            default:
+                break;
+        }
+    };
+    AppController.prototype.addUser = function (name) {
+        var user = this.model.addUser(name);
+        this.onUser.trigger(user);
+    };
+    Object.defineProperty(AppController.prototype, "user", {
+        get: function () { return this.onUser.expose(); },
+        enumerable: true,
+        configurable: true
+    });
+    return AppController;
+}());
+var AppModel = (function () {
+    function AppModel() {
+        this.users = [];
+    }
+    AppModel.prototype.addUser = function (name) {
+        var user = new User(name);
+        this.users.push(user);
+        return user;
+    };
+    return AppModel;
+}());
+exports.theAppController = new AppController();
+
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -81,11 +147,11 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var app_menu_1 = __webpack_require__(1);
-var app_page_trajets_1 = __webpack_require__(4);
-var app_page_history_1 = __webpack_require__(6);
-var app_page_users_1 = __webpack_require__(8);
-var html = __webpack_require__(12);
+var app_menu_1 = __webpack_require__(2);
+var app_page_trajets_1 = __webpack_require__(5);
+var app_page_history_1 = __webpack_require__(7);
+var app_page_users_1 = __webpack_require__(9);
+var html = __webpack_require__(17);
 var AppElement = (function (_super) {
     __extends(AppElement, _super);
     function AppElement() {
@@ -107,7 +173,7 @@ registerAppElement();
 
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -124,8 +190,8 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var app_controller_1 = __webpack_require__(2);
-var html = __webpack_require__(3);
+var app_controller_1 = __webpack_require__(0);
+var html = __webpack_require__(4);
 var AppMenuElement = (function (_super) {
     __extends(AppMenuElement, _super);
     function AppMenuElement() {
@@ -157,51 +223,41 @@ exports.registerAppMenuElement = registerAppMenuElement;
 
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var AppController = (function () {
-    function AppController() {
+var LiteEvent = (function () {
+    function LiteEvent() {
+        this.handlers = [];
     }
-    AppController.prototype.AppController = function () {
+    LiteEvent.prototype.on = function (handler) {
+        this.handlers.push(handler);
     };
-    AppController.prototype.showPage = function (page) {
-        switch (page) {
-            case "trajets":
-                document.getElementById("page-trajets").style.display = "block";
-                document.getElementById("page-history").style.display = "none";
-                document.getElementById("page-users").style.display = "none";
-                break;
-            case "history":
-                document.getElementById("page-trajets").style.display = "none";
-                document.getElementById("page-history").style.display = "block";
-                document.getElementById("page-users").style.display = "none";
-                break;
-            case "users":
-                document.getElementById("page-trajets").style.display = "none";
-                document.getElementById("page-history").style.display = "none";
-                document.getElementById("page-users").style.display = "block";
-                break;
-            default:
-                break;
-        }
+    LiteEvent.prototype.off = function (handler) {
+        this.handlers = this.handlers.filter(function (h) { return h !== handler; });
     };
-    return AppController;
+    LiteEvent.prototype.trigger = function (data) {
+        this.handlers.slice(0).forEach(function (h) { return h(data); });
+    };
+    LiteEvent.prototype.expose = function () {
+        return this;
+    };
+    return LiteEvent;
 }());
-exports.theAppController = new AppController();
+exports.LiteEvent = LiteEvent;
 
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports) {
 
 module.exports = "<div id=\"app-menu\">\r\n    <a id=\"app-menu-trajets\">Trajets</a>\r\n    <a id=\"app-menu-history\">History</a>\r\n    <a id=\"app-menu-users\">Users</a>\r\n</div>";
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -218,7 +274,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var html = __webpack_require__(5);
+var html = __webpack_require__(6);
 var AppPageTrajetsElement = (function (_super) {
     __extends(AppPageTrajetsElement, _super);
     function AppPageTrajetsElement() {
@@ -236,13 +292,13 @@ exports.registerAppPageTrajetsElement = registerAppPageTrajetsElement;
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports) {
 
 module.exports = "<div>\r\n    <h1>Trajets</h1>\r\n</div>";
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -259,7 +315,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var html = __webpack_require__(7);
+var html = __webpack_require__(8);
 var AppPageHistoryElement = (function (_super) {
     __extends(AppPageHistoryElement, _super);
     function AppPageHistoryElement() {
@@ -277,47 +333,10 @@ exports.registerAppPageHistoryElement = registerAppPageHistoryElement;
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports) {
 
 module.exports = "<div>\r\n    <h1>History</h1>\r\n</div>";
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/// <reference path="../../typings/webcomponents.d.ts" />
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-var app_user_form_1 = __webpack_require__(9);
-var html = __webpack_require__(11);
-var AppPageUsersElement = (function (_super) {
-    __extends(AppPageUsersElement, _super);
-    function AppPageUsersElement() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    AppPageUsersElement.prototype.createdCallback = function () {
-        this.innerHTML = html;
-    };
-    return AppPageUsersElement;
-}(HTMLDivElement));
-function registerAppPageUsersElement() {
-    app_user_form_1.registerAppFormUserElement();
-    document.registerElement("app-users-page", AppPageUsersElement);
-}
-exports.registerAppPageUsersElement = registerAppPageUsersElement;
-
 
 /***/ }),
 /* 9 */
@@ -337,7 +356,47 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var html = __webpack_require__(10);
+var app_user_form_1 = __webpack_require__(10);
+var app_user_list_1 = __webpack_require__(12);
+var html = __webpack_require__(16);
+var AppPageUsersElement = (function (_super) {
+    __extends(AppPageUsersElement, _super);
+    function AppPageUsersElement() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    AppPageUsersElement.prototype.createdCallback = function () {
+        this.innerHTML = html;
+    };
+    return AppPageUsersElement;
+}(HTMLDivElement));
+function registerAppPageUsersElement() {
+    app_user_form_1.registerAppFormUserElement();
+    app_user_list_1.registerAppListUserElement();
+    document.registerElement("app-users-page", AppPageUsersElement);
+}
+exports.registerAppPageUsersElement = registerAppPageUsersElement;
+
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/// <reference path="../../typings/webcomponents.d.ts" />
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var app_controller_1 = __webpack_require__(0);
+var html = __webpack_require__(11);
 var AppFormUser = (function (_super) {
     __extends(AppFormUser, _super);
     function AppFormUser() {
@@ -357,6 +416,7 @@ var AppFormUser = (function (_super) {
     AppFormUser.prototype.onAddUser = function () {
         var userName = this.userInput.value;
         this.userInput.value = "";
+        app_controller_1.theAppController.addUser(userName);
     };
     return AppFormUser;
 }(HTMLDivElement));
@@ -367,19 +427,114 @@ exports.registerAppFormUserElement = registerAppFormUserElement;
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports) {
 
 module.exports = "<form>\r\n    <label for=\"user-name\">Name</label>\r\n    <input type=\"text\" id=\"user-name\">\r\n    <button type=\"button\">add</button>\r\n</form>";
 
 /***/ }),
-/* 11 */
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/// <reference path="../../typings/webcomponents.d.ts" />
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var app_controller_1 = __webpack_require__(0);
+var app_user_list_element_1 = __webpack_require__(13);
+var html = __webpack_require__(15);
+var AppListUser = (function (_super) {
+    __extends(AppListUser, _super);
+    function AppListUser() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    AppListUser.prototype.createdCallback = function () {
+        this.innerHTML = html;
+    };
+    AppListUser.prototype.attachedCallback = function () {
+        var _this = this;
+        app_controller_1.theAppController.user.on(function (user) {
+            _this.addUser(user);
+        });
+    };
+    AppListUser.prototype.addUser = function (user) {
+        var userElem = document.createElement("app-user-list-element");
+        this.children[0].appendChild(userElem);
+    };
+    return AppListUser;
+}(HTMLDivElement));
+function registerAppListUserElement() {
+    app_user_list_element_1.registerAppUserListElement();
+    document.registerElement("app-user-list", AppListUser);
+}
+exports.registerAppListUserElement = registerAppListUserElement;
+
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/// <reference path="../../typings/webcomponents.d.ts" />
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var html = __webpack_require__(14);
+var AppUserListElement = (function (_super) {
+    __extends(AppUserListElement, _super);
+    function AppUserListElement() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    AppUserListElement.prototype.createdCallback = function () {
+        this.innerHTML = html;
+    };
+    return AppUserListElement;
+}(HTMLDivElement));
+function registerAppUserListElement() {
+    document.registerElement("app-user-list-element", AppUserListElement);
+}
+exports.registerAppUserListElement = registerAppUserListElement;
+
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports) {
+
+module.exports = "<div>\n    <span class=\"user-name\">USER NAME</span>\n</div>";
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports) {
+
+module.exports = "<div>\r\n</div>";
+
+/***/ }),
+/* 16 */
 /***/ (function(module, exports) {
 
 module.exports = "<div>\r\n    <h1>Users</h1>\r\n    <app-user-form></app-user-form>\r\n    <app-user-list></app-user-list>\r\n</div>";
 
 /***/ }),
-/* 12 */
+/* 17 */
 /***/ (function(module, exports) {
 
 module.exports = "<app-menu></app-menu>\r\n\r\n<app-trajets-page id=\"page-trajets\"></app-trajets-page>\r\n<app-history-page id=\"page-history\"></app-history-page>\r\n<app-users-page id=\"page-users\"></app-users-page>";

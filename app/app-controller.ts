@@ -1,7 +1,17 @@
-class AppController {
+import * as evt from "./lite-event"
 
-    AppController() {
+export class User {
+    name: string;
+
+    constructor(name: string) {
+        this.name = name;
     }
+}
+
+class AppController {
+    private readonly onUser = new evt.LiteEvent<User>();
+
+    model: AppModel = new AppModel();
 
     showPage(page: string) {
         switch (page) {
@@ -27,6 +37,24 @@ class AppController {
                 break;
         }
     }
+
+    addUser(name: string) {
+        let user = this.model.addUser(name);
+        this.onUser.trigger(user);
+    }
+
+    public get user() { return this.onUser.expose(); }
+}
+
+class AppModel {
+    users: User[] = [];
+
+    addUser(name: string) {
+        let user = new User(name);
+        this.users.push(user);
+        return user;
+    }
+
 }
 
 export let theAppController = new AppController();
