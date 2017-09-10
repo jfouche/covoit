@@ -1,26 +1,28 @@
 {
-  "name": "covoit",
-  "version": "0.0.1",
-  "description": "",
-  "main": "index.html",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "WTFPL",
-  "dependencies": {
-    "bootstrap": "^3.3.7",
-    "firebase": "^4.2.0",
-    "webcomponents-lite": "^0.6.0"
-  },
-  "devDependencies": {
-    "awesome-typescript-loader": "^3.2.3",
-    "css-loader": "^0.28.7",
-    "file-loader": "^0.11.2",
-    "html-loader": "^0.5.1",
-    "source-map-loader": "^0.2.1",
-    "style-loader": "^0.18.2",
-    "typescript": "^2.4.2",
-    "uglifyjs-webpack-plugin": "^0.4.6"
-  }
+    "name": "covoit",
+    "version": "0.0.1",
+    "description": "Covoit app",
+    "main": "index.html",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Jérémie Fouché",
+    "license": "WTFPL",
+    "dependencies": {
+        "bootstrap": "^3.3.7",
+        "firebase": "^4.2.0",
+        "webcomponents-lite": "^0.6.0",
+        "js-datepicker": "^2.1.3"
+    },
+    "devDependencies": {
+        "webpack": "^3.5.6",
+        "awesome-typescript-loader": "^3.2.3",
+        "css-loader": "^0.28.7",
+        "file-loader": "^0.11.2",
+        "html-loader": "^0.5.1",
+        "source-map-loader": "^0.2.1",
+        "style-loader": "^0.18.2",
+        "typescript": "^2.4.2",
+        "uglifyjs-webpack-plugin": "^0.4.6"
+    }
 }

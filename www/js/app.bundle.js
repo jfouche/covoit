@@ -71,14 +71,14 @@
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var evt = __webpack_require__(3);
-var User = (function () {
+var User = /** @class */ (function () {
     function User(name) {
         this.name = name;
     }
     return User;
 }());
 exports.User = User;
-var AppController = (function () {
+var AppController = /** @class */ (function () {
     function AppController() {
         this.onUser = new evt.LiteEvent();
         this.model = new AppModel();
@@ -115,7 +115,7 @@ var AppController = (function () {
     });
     return AppController;
 }());
-var AppModel = (function () {
+var AppModel = /** @class */ (function () {
     function AppModel() {
         this.users = [];
     }
@@ -152,7 +152,7 @@ var app_page_trajets_1 = __webpack_require__(5);
 var app_page_history_1 = __webpack_require__(7);
 var app_page_users_1 = __webpack_require__(9);
 var html = __webpack_require__(17);
-var AppElement = (function (_super) {
+var AppElement = /** @class */ (function (_super) {
     __extends(AppElement, _super);
     function AppElement() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -192,7 +192,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var app_controller_1 = __webpack_require__(0);
 var html = __webpack_require__(4);
-var AppMenuElement = (function (_super) {
+var AppMenuElement = /** @class */ (function (_super) {
     __extends(AppMenuElement, _super);
     function AppMenuElement() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -229,7 +229,7 @@ exports.registerAppMenuElement = registerAppMenuElement;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var LiteEvent = (function () {
+var LiteEvent = /** @class */ (function () {
     function LiteEvent() {
         this.handlers = [];
     }
@@ -275,13 +275,14 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var html = __webpack_require__(6);
-var AppPageTrajetsElement = (function (_super) {
+var AppPageTrajetsElement = /** @class */ (function (_super) {
     __extends(AppPageTrajetsElement, _super);
     function AppPageTrajetsElement() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     AppPageTrajetsElement.prototype.createdCallback = function () {
         this.innerHTML = html;
+        var picker = datepicker('#date-trajet');
     };
     return AppPageTrajetsElement;
 }(HTMLDivElement));
@@ -295,7 +296,7 @@ exports.registerAppPageTrajetsElement = registerAppPageTrajetsElement;
 /* 6 */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\r\n    <h1>Trajets</h1>\r\n</div>";
+module.exports = "<div>\r\n    <h1>Trajet</h1>\r\n    <div>date:<input type=\"text\" id=\"date-trajet\">\r\n    </div>\r\n\r\n</div>";
 
 /***/ }),
 /* 7 */
@@ -316,7 +317,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var html = __webpack_require__(8);
-var AppPageHistoryElement = (function (_super) {
+var AppPageHistoryElement = /** @class */ (function (_super) {
     __extends(AppPageHistoryElement, _super);
     function AppPageHistoryElement() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -359,7 +360,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var app_user_form_1 = __webpack_require__(10);
 var app_user_list_1 = __webpack_require__(12);
 var html = __webpack_require__(16);
-var AppPageUsersElement = (function (_super) {
+var AppPageUsersElement = /** @class */ (function (_super) {
     __extends(AppPageUsersElement, _super);
     function AppPageUsersElement() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -397,7 +398,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var app_controller_1 = __webpack_require__(0);
 var html = __webpack_require__(11);
-var AppFormUser = (function (_super) {
+var AppFormUser = /** @class */ (function (_super) {
     __extends(AppFormUser, _super);
     function AppFormUser() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -453,7 +454,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var app_controller_1 = __webpack_require__(0);
 var app_user_list_element_1 = __webpack_require__(13);
 var html = __webpack_require__(15);
-var AppListUser = (function (_super) {
+var AppListUser = /** @class */ (function (_super) {
     __extends(AppListUser, _super);
     function AppListUser() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -500,7 +501,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var html = __webpack_require__(14);
-var AppUserListElement = (function (_super) {
+var AppUserListElement = /** @class */ (function (_super) {
     __extends(AppUserListElement, _super);
     function AppUserListElement() {
         return _super !== null && _super.apply(this, arguments) || this;
